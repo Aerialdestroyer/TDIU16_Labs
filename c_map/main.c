@@ -117,7 +117,7 @@ int main()
   map_for_each(&container, print_less, i);
   
   /*! free all remaining memory and remove from map */
-  // map_remove_if(&container, do_free, 0);
+  map_remove_if(&container, do_free, 0);
   
   return 0;
 }

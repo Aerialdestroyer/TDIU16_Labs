@@ -39,8 +39,18 @@ value_t map_remove(struct map* m, key_t k){
 }
 
 void map_for_each(struct map* m, void(*exec)(key_t k, value_t v, int aux), int aux){
-    for(int i=0; i<aux; i++){
-        printf("fuk");
+    for(int j=0; j<MAP_SIZE; j++){
+        if(m->content[j] != NULL){
+            exec(j, map_find(m,j), aux);
+        }
+    }
+    printf("\n");
+}
+
+void map_remove_if(struct map* m, bool(*cond)(key_t k, value_t v, int aux), int aux){
+    for(int j=0; j<MAP_SIZE; j++){
+        if(m->content[j] != NULL){
+            cond(j, map_find(m,j), aux);
+        }
     }
 }
-//void map_remove_if(struct map* m, bool(*cond)(key_t k, value_t v, int aux), int aux);
